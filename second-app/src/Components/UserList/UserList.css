@@ -1,0 +1,14 @@
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  padding: 5px;
+  list-style: none;
+}
+
+.list-items {
+  color: green;
+  font-size: 20px;
+}
