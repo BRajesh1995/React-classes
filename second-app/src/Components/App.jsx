@@ -1,5 +1,5 @@
 import UserList from "./UserList/UserList";
-import User from "./user/user";
+import User from "./user/User";
 
 const App = () => {
   const isUserLoggedIn = false;

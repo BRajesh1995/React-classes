@@ -1,0 +1,24 @@
+.counter-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 18px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.count-text {
+  margin: 0;
+  font-size: 18px;
+}
+
+.count-value {
+  width: 60px;
+  font-size: 18px;
+  text-align: center;
+}

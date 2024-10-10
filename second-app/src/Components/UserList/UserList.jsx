@@ -12,7 +12,7 @@ const UserList = () => {
         {users.map((item) => {
           return (
             <li key={item.id} className="list-items">
-              Welcome, {item.name} and your name is {item.age}
+              Welcome, {item.name} and your age is {item.age}
             </li>
           );
         })}

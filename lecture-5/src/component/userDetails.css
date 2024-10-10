@@ -1,0 +1,9 @@
+.user-list-items {
+  display: block;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.user-list-item {
+  list-style: none;
+}
