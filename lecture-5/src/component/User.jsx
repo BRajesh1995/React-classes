@@ -1,35 +1,72 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const User = () => {
-  const [data, setData] = useState(null);
-  const fetchData = async () => {
-    try {
-      const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  const [data, setData] = useState(null); // Store fetched user data
+  const [userId, setUserId] = useState(null); // State to track the current user ID
+  const [inputId, setInputId] = useState(""); // State to track user input
 
-      const result = await res.json();
+  // Function to fetch user data based on userId
+  const fetchData = async (userId) => {
+    try {
+      const response = await fetch(
+        `https://jsonplaceholder.typicode.com/users/${userId}`
+      );
+
+      const result = await response.json();
       setData(result);
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching data:", error);
     }
   };
+
+  // Fetch user data when userId changes
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(userId);
+  }, [userId]);
+
+  // Handle input change
+  const handleInputChange = (e) => {
+    setInputId(e.target.value);
+  };
+
+  // Handle button click to update userId state
+  const handleFetchUser = () => {
+    if (inputId) {
+      setUserId(inputId);
+      setInputId(""); // Clear the input field after fetching
+    }
+  };
+
   return (
     <>
-      <h1>User List</h1>
+      <h1>Single User Details</h1>
+
+      <div>
+        <input
+          type="number"
+          placeholder="Enter User ID"
+          value={inputId}
+          onChange={handleInputChange}
+        />
+        <button onClick={handleFetchUser}>Fetch User</button>
+      </div>
+
       <ul className="user-list-items">
-        {data &&
-          !!data.length &&
-          data.map((item) => {
-            return (
-              <>
-                <li className="user-list-item" key={item.id}>
-                  {item.name}
-                </li>
-              </>
-            );
-          })}
+        {data ? (
+          <>
+            <li className="user-list-item" key={data.id}>
+              <strong>Name:</strong> {data.name}
+            </li>
+            <li className="user-list-item" key={`${data.id}-email`}>
+              <strong>Email:</strong> {data.email}
+            </li>
+            <li className="user-list-item" key={`${data.id}-phone`}>
+              <strong>Phone No:</strong> {data.phone}
+            </li>
+          </>
+        ) : (
+          <li>No user data available</li>
+        )}
       </ul>
     </>
   );

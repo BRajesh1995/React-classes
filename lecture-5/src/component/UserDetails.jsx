@@ -1,33 +1,41 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+
 import "./userDetails.css";
+
 const UserDetails = () => {
   const [data, setData] = useState(null);
-  const [userId, setUserId] = useState(1);
 
-  const fetchData = async (userId) => {
+  const fetchData = async () => {
     try {
-      const res = await fetch(
-        `https://jsonplaceholder.typicode.com/users/${userId}`
-      );
+      const res = await fetch("https://jsonplaceholder.typicode.com/users");
 
       const result = await res.json();
+      console.log(result);
       setData(result);
     } catch (error) {
       console.log(error);
     }
   };
+
   useEffect(() => {
-    fetchData(userId);
-  }, [userId]);
+    fetchData();
+  }, []);
+
   return (
     <>
       <h1>User List</h1>
       <ul className="user-list-items">
-        {data && (
-          <li className="user-list-item" key={data.id}>
-            {data.name} - {data.email}
-          </li>
-        )}
+        {data &&
+          !!data.length &&
+          data.map((item) => {
+            return (
+              <>
+                <li className="user-list-item" key={item.id}>
+                  {item.name}
+                </li>
+              </>
+            );
+          })}
       </ul>
     </>
   );

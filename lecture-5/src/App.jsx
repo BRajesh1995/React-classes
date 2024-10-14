@@ -7,8 +7,8 @@ import AutoCounter from "./component/AutoCounter";
 const App = () => {
   return (
     <>
-      <UserDetails />
-      {/* <User /> */}
+      {/* <UserDetails /> */}
+      <User />
       <AutoCounter />
     </>
   );
