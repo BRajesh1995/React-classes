@@ -1,0 +1,16 @@
+ul {
+  display: flex;
+  flex-direction: column;
+}
+li {
+  display: flex;
+  list-style: none;
+  margin: 10px;
+}
+.list-items-cont {
+  display: flex;
+  margin-bottom: 20px;
+}
+button {
+  margin-right: 5px;
+}
